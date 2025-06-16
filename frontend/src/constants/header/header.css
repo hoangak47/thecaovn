@@ -1,0 +1,42 @@
+.nav-link.active::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 2px;
+  background-color: #e91f31;
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-link.active::after {
+    content: "";
+    display: none;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-wrap: nowrap;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+}
