@@ -1,0 +1,22 @@
+// app/ClientWrapper.jsx
+"use client";
+
+import { usePathname } from "next/navigation";
+import Layout from "@/constants/layout/layout";
+import Body from "@/constants/body";
+import { GlobalProvider } from "@/context/GlobalContext";
+
+export default function ClientWrapper({ children }) {
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin");
+
+  if (isAdmin) return children;
+
+  return (
+    <GlobalProvider>
+      <Layout>
+        <Body>{children}</Body>
+      </Layout>
+    </GlobalProvider>
+  );
+}

@@ -1,0 +1,45 @@
+input[type="checkbox"].toggle-switch {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 42px;
+  height: 22px;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease-in-out;
+}
+input[type="checkbox"].toggle-switch:checked {
+  background-color: #10b981;
+}
+input[type="checkbox"].toggle-switch:checked::before {
+  transform: translateX(20px);
+  background-color: #fff;
+  border-color: #10b981;
+}
+input[type="checkbox"].toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background-color: #fff;
+  border: 1.5px solid #9ca3af;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+/* Check icon inside toggle */
+input[type="checkbox"].toggle-switch:checked::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  font-size: 12px;
+  color: #10b981;
+  pointer-events: none;
+}
