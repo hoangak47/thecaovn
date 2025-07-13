@@ -6,7 +6,7 @@ export default async function TieuChi() {
   return (
     <section className="flex flex-col mt-32 xl:px-28 px-4">
       <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-        {rate.slice(0, 3).map((item, index) => (
+        {rate?.slice(0, 3).map((item, index) => (
           <div
             key={index}
             className="flex-1 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] overflow-hidden bg-white rounded-2xl p-5 flex flex-col items-center"
