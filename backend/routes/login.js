@@ -22,13 +22,19 @@ router.post("/", async (req, res) => {
       return res.status(401).send("Sai mat khau");
     }
 
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      req.headers.origin || "https://thecaovn.com"
+    );
+
+    // Cookie:
     res.cookie("token", id, {
       httpOnly: true,
-      secure: true, // vì Vercel = HTTPS
-      sameSite: "None", // để cross-origin
+      secure: true,
+      sameSite: "None",
       maxAge: 60 * 60 * 1000,
     });
-
     console.log("token");
 
     return res.status(200).json({ id: userDoc.id, ...userData });

@@ -25,6 +25,7 @@ app.use(
       "https://thecaovnapi.vercel.app/",
       "https://thecaovn.onrender.com/",
       "https://thecaovn.com",
+      "https://thecaovn-liard.vercel.app/",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Nếu bạn dùng cookie hoặc auth header
