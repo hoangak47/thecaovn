@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://thecaovn.vercel.app",
+      "https://thecaovnapi.vercel.app/",
       "https://thecaovn.onrender.com/",
       "https://thecaovn.com",
     ], // Cho phép frontend truy cập
