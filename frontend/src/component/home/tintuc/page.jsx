@@ -36,18 +36,21 @@ export default function TinTuc({ data }) {
         <span className="text-[var(--color-primary)]">Thế Cao</span>
       </h1>
       <div className="flex mt-10 md:flex-row flex-col">
-        <Link href={`${data[0]?.url}`} className="flex-1 flex flex-col p-5">
+        <Link
+          href={`${data.length > 0 && data[0]?.url}`}
+          className="flex-1 flex flex-col p-5"
+        >
           <img
-            src={data[0]?.image}
+            src={data.length > 0 && data[0]?.image}
             alt={"as"}
             className="object-contain aspect-4/3 w-full"
           />
 
           <h1 className="text-2xl font-medium mt-5 line-clamp-2">
-            {data[0]?.title}
+            {data.length > 0 && data[0]?.title}
           </h1>
           <p className="text-base mt-1 text-[--color-gray] line-clamp-2">
-            {data[0]?.short_description}
+            {data.length > 0 && data[0]?.short_description}
           </p>
 
           <div className="flex items-center text-xs text-gray-400 mb-2">
@@ -64,7 +67,11 @@ export default function TinTuc({ data }) {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            {data && formatTimestamp(data[0]?.updatedAt || data[0]?.createdAt)}
+            {data &&
+              formatTimestamp(
+                (data.length > 0 && data[0]?.updatedAt) ||
+                  (data.length > 0 && data[0]?.createdAt)
+              )}
           </div>
         </Link>
         <div className="flex-1 flex flex-col ml-5">

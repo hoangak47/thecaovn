@@ -8,7 +8,6 @@ export default async function getSlideData() {
 
     return (await res.data) || [];
   } catch (error) {
-    console.error("Slide fetch error:", error);
     return [];
   }
 }

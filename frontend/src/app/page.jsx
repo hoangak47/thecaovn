@@ -73,7 +73,7 @@ export default async function Home() {
       <TieuChi />
       <Doitac />
       <KhachHang />
-      <TinTuc data={tinTucData} />
+      {/* <TinTuc data={tinTucData} /> */}
     </>
   );
 }

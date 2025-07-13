@@ -81,7 +81,6 @@ export default async function page({ params }) {
   const detail_sanPham = await getDetailProduct(id);
   const sanPham = await getSanPham(detail_sanPham?.parent_category || id);
 
-  console.log(sanPham?.schema || detail_sanPham?.schema || data.schema);
   return (
     <>
       <script
