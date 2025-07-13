@@ -25,7 +25,7 @@ app.use(
       "https://thecaovnapi.vercel.app/",
       "https://thecaovn.onrender.com/",
       "https://thecaovn.com",
-    ], // Cho phép frontend truy cập
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Nếu bạn dùng cookie hoặc auth header
   })
