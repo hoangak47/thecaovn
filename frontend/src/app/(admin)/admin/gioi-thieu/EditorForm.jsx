@@ -46,6 +46,7 @@ export default function EditorForm({ initialData }) {
             setData={setData}
             handleChange={handleChange}
             url={false}
+            short_description_input="t"
           />
 
           <FormSEO data={data} setData={setData} handleChange={handleChange} />

@@ -5,8 +5,8 @@ async function getData() {
   const url = process.env.NEXT_PUBLIC_API_URL;
 
   const res = await axios.get(`${url}gioi-thieu`);
-  if (!res.ok) throw new Error("Lỗi khi tải dữ liệu");
-  const result = await res.json();
+
+  const result = res.data;
 
   return {
     title: result.title || "",

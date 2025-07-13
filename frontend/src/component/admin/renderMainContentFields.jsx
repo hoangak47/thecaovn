@@ -91,7 +91,7 @@ export default function RenderMainContentFields({
                       id="editor1"
                       onChange={handleChange("short_description")}
                       placeholder="Mô tả (vi)"
-                      value={data?.short_description}
+                      value={data?.short_description || ""}
                     />
                   )}
                 </div>

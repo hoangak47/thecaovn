@@ -31,7 +31,6 @@ export default async function page() {
   return (
     <>
       <Slide data={slideData} />
-      {/* <Products /> */}
       <LoadProduct search="san-pham" title="SẢN PHẨM" />
     </>
   );

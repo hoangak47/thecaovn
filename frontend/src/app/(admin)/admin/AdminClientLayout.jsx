@@ -1,7 +1,6 @@
 "use client";
 
 import logo from "@/assets/images/logo.png";
-
 import "./style.css";
 import usePath from "@/component/usePath";
 
@@ -35,19 +34,15 @@ const menuItems = [
   },
 ];
 
-export default function LayoutAdmin({ children }) {
+export default function AdminClientLayout({ children }) {
   const path = usePath();
+
   return (
     <div className="flex h-screen ">
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-md overflow-y-auto">
         <div className="p-4">
-          <img
-            className="mx-auto w-32 md:w-40"
-            src={logo.src}
-            alt="The Cao"
-            // width={150}
-          />
+          <img className="mx-auto w-32 md:w-40" src={logo.src} alt="The Cao" />
         </div>
         <nav className="mt-6">
           <ul>

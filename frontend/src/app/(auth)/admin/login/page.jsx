@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,6 +11,34 @@ const Page = () => {
     id: "",
     password: "",
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const url = process.env.NEXT_PUBLIC_API_URL;
+
+    try {
+      console.log(formData);
+      const res = await axios.post(`${url}login`, formData, {
+        withCredentials: true,
+      });
+
+      if (res.status === 200) {
+        alert("Đăng nhập thành công!");
+        router.push("/admin");
+      }
+    } catch (error) {
+      alert("Sai tài khoản hoặc mật khẩu");
+    }
+  };
 
   return (
     <div className="bg-gray-100 flex items-center justify-center min-h-screen">
@@ -25,7 +54,7 @@ const Page = () => {
               Vui lòng đăng nhập vào tài khoản của bạn!
             </p>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700">Tài khoản</label>
               <div className="relative">
@@ -37,6 +66,7 @@ const Page = () => {
                   name="id"
                   required
                   value={formData.id}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -46,12 +76,13 @@ const Page = () => {
                 <input
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
                   placeholder=".........."
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   autoComplete="current-password"
                   required
                   value={formData.password}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -61,7 +92,10 @@ const Page = () => {
                 Ghi nhớ đăng nhập
               </label>
             </div>
-            <button className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition duration-300">
+            <button
+              type="submit"
+              className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition duration-300"
+            >
               Đăng nhập
             </button>
           </form>

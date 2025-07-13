@@ -126,7 +126,7 @@ export default async function page({ params }) {
                   }}
                 />
                 <div className="w-full h-[1px] bg-[#000] my-10"></div>
-                <LoadListProduct sanPham={sanPham} />
+                <LoadListProduct sanPham={sanPham} max={4} />
               </>
             )}
 
@@ -201,7 +201,7 @@ export default async function page({ params }) {
         {detail_sanPham?.type === "san-pham" && (
           <>
             <div className="w-full h-[1px] bg-[#000] my-10"></div>
-            <h1 className="text-2xl font-medium mt-5 text-center m-5 text-[var(--color-primary)]">
+            <h1 className="text-4xl font-medium mt-5 text-center m-5 text-[var(--color-primary)]">
               Các sản phẩm cùng loại
             </h1>
             <LoadListProduct sanPham={sanPham} />
