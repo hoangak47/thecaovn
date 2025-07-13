@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const uploadRouter = require("./routes/upload");
-const aboutRoutes = require("./routes/about");
+const uploadRouter = require("./routes/upload.js");
+const aboutRoutes = require("./routes/about.js");
 const aboutSlidesRoutes = require("./routes/aboutSlides.js");
 const categoriesRoutes = require("./routes/categories.js");
 const tieuChiRoutes = require("./routes/tieuChi.js");
