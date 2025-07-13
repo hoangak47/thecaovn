@@ -18,17 +18,26 @@ const loginRoutes = require("./routes/login.js");
 const app = express();
 app.use(express.json());
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://thecaovn.com",
+  "https://thecaovn-liard.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://thecaovn.com",
-      "https://thecaovn-liard.vercel.app/",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Nếu bạn dùng cookie hoặc auth header
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
   })
 );
+
 // Cho JSON
 app.use(bodyParser.json({ limit: "10mb" }));
 // Cho form-data (upload file)
