@@ -17,10 +17,18 @@ const lienHeRoutes = require("./routes/lienHe.js");
 const app = express();
 app.use(express.json());
 
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",https://thecaovn.onrender.com/
+//     credentials: true, // nếu cần gửi cookie/auth (tùy)
+//   })
+// );
+
+// có thể dùng 2 link là http://localhost:3000 và https://thecaovn.onrender.com/
 app.use(
   cors({
-    origin: "http://localhost:3000", // cho phép frontend Next.js truy cập
-    credentials: true, // nếu cần gửi cookie/auth (tùy)
+    origin: ["http://localhost:3000", "https://thecaovn.onrender.com/"],
+    credentials: true,
   })
 );
 
