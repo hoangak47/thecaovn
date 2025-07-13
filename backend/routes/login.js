@@ -25,6 +25,9 @@ router.post("/", async (req, res) => {
     res.cookie("token", id, {
       maxAge: 60 * 60 * 1000,
       httpOnly: true,
+      secure: true, // BẮT BUỘC nếu HTTPS
+      sameSite: "None", // BẮT BUỘC nếu cross-origin
+      path: "/",
     });
 
     console.log("token");
