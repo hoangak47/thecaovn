@@ -27,7 +27,7 @@ const Page = () => {
 
     try {
       console.log(formData);
-      const res = await axios.post(`${url}login`, formData, {
+      const res = await axios.post(`/api/login`, formData, {
         withCredentials: true,
       });
 
