@@ -29,13 +29,12 @@ router.post("/", async (req, res) => {
     );
 
     // Cookie:
-    res.cookie("token", id, {
+    return res.cookie("token", id, {
       httpOnly: true,
       secure: true,
       sameSite: "None",
       maxAge: 60 * 60 * 1000,
     });
-    console.log("token");
 
     return res.status(200).json({ id: userDoc.id, ...userData });
   } catch (error) {

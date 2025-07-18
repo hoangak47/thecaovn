@@ -46,8 +46,6 @@ async function getCategoryMenu() {
     const response = await axios.get(`${url}danh-muc`);
     const data = response.data;
 
-    // console.log(data);
-
     const updatedMenu = defaultMenu.map((item) => {
       const cleanLink = item.link.replace(/^\//, "");
 

@@ -7,6 +7,7 @@ import React, { act } from "react";
 
 import NoImage from "@/assets/images/noimage.png";
 import HandleAction from "@/component/admin/handleActionContent";
+import MultipleImage from "@/component/admin/multipleImage";
 
 export default function page() {
   const [data, setData] = React.useState({
@@ -101,6 +102,7 @@ export default function page() {
             </div>
           </RenderMainContentFields>
 
+          <MultipleImage initialData={data} setData={setData} />
           <FormSEO data={data} setData={setData} handleChange={handleChange} />
           <FormSchema
             data={data}

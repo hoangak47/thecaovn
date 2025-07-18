@@ -6,7 +6,6 @@ export default async function getGioiThieuData() {
     const res = await axios.get(`${url}gioi-thieu`);
     return (await res.data) || [];
   } catch (error) {
-    console.error("GioiThieu fetch error:", error);
     return null;
   }
 }

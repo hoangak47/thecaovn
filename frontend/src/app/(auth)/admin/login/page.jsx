@@ -23,10 +23,9 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = process.env.NEXT_PUBLIC_API_URL;
+    // const url = process.env.NEXT_PUBLIC_API_URL;
 
     try {
-      console.log(formData);
       const res = await axios.post(`/api/login`, formData, {
         withCredentials: true,
       });

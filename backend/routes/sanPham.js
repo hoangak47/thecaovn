@@ -12,6 +12,12 @@ router.post("/", async (req, res) => {
     }
 
     const ref = db.collection("san-pham").doc(url);
+
+    const doc = await ref.get();
+    if (doc.exists) {
+      return res.status(400).send("San pham da ton tai");
+    }
+
     await ref.set({
       title,
       type,

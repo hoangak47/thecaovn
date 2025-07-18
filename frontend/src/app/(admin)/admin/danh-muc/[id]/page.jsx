@@ -8,6 +8,7 @@ import React, { use } from "react";
 import NoImage from "@/assets/images/noimage.png";
 import HandleAction from "@/component/admin/handleActionContent";
 import axios from "axios";
+import MultipleImage from "@/component/admin/multipleImage";
 
 export default function page({ params }) {
   const [data, setData] = React.useState({
@@ -30,10 +31,11 @@ export default function page({ params }) {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}danh-muc/${id}`)
       .then((res) => {
+        console.log(res.data);
         setData(res.data);
       })
       .catch((error) => {
-        console.error("Lỗi khi lấy dữ liệu:", error);
+        setData({});
       });
   }, []);
 
@@ -56,6 +58,7 @@ export default function page({ params }) {
             setData={setData}
             url={`${process.env.NEXT_PUBLIC_API_URL}danh-muc`}
             data={data}
+            id={id}
           />
 
           <RenderMainContentFields
@@ -85,7 +88,7 @@ export default function page({ params }) {
                     aria-invalid="true"
                     aria-describedby="category-error"
                     defaultValue={
-                      options.find((opt) => opt.label === data.parent_category)
+                      options.find((opt) => opt.label === data?.parent_category)
                         ?.value || ""
                     }
                     onChange={(e) => {
@@ -116,6 +119,11 @@ export default function page({ params }) {
               </form>
             </div>
           </RenderMainContentFields>
+
+          <MultipleImage
+            initialData={data?.multiple_image || []}
+            setData={setData}
+          />
 
           <FormSEO data={data} setData={setData} handleChange={handleChange} />
           <FormSchema

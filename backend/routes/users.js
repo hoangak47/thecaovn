@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
       .status(201)
       .json({ id: userRef.id, message: "Thêm người dùng thành công" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -37,9 +37,9 @@ router.get("/", async (req, res) => {
     usersSnapshot.forEach((doc) => {
       users.push({ id: doc.id, ...doc.data() });
     });
-    res.status(200).json(users);
+    return res.status(200).json(users);
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -53,9 +53,9 @@ router.get("/:id", async (req, res) => {
       return res.status(404).send("Không tìm thấy người dùng");
     }
 
-    res.status(200).json({ id: doc.id, ...doc.data() });
+    return res.status(200).json({ id: doc.id, ...doc.data() });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -77,9 +77,9 @@ router.put("/:id", async (req, res) => {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    res.status(200).json({ message: "Cập nhật người dùng thành công" });
+    return res.status(200).json({ message: "Cập nhật người dùng thành công" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -94,9 +94,9 @@ router.delete("/:id", async (req, res) => {
     }
 
     await userRef.delete();
-    res.status(200).json({ message: "Xóa người dùng thành công" });
+    return res.status(200).json({ message: "Xóa người dùng thành công" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 

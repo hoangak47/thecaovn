@@ -22,7 +22,7 @@ export default function EditorForm({ id = null }) {
           setData(res.data);
         })
         .catch((error) => {
-          console.error("Lỗi khi lấy dữ liệu:", error);
+          setData({});
         });
     }
   }, [id]);

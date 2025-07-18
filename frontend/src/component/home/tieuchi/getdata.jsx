@@ -6,7 +6,6 @@ export async function getData() {
     });
     return await res.json();
   } catch (error) {
-    console.error("Slide fetch error:", error);
     return [];
   }
 }

@@ -26,7 +26,6 @@ export default async function getCategoryMenu() {
 
     return updatedMenu;
   } catch (error) {
-    console.error("Menu error:", error.message);
     return defaultMenu;
   }
 }

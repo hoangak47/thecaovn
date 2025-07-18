@@ -11,14 +11,13 @@ exports.uploadFile = (req, res) => {
       return res.status(400).json({ error: "Unsupported file type" });
     }
 
-    res.json({
+    return res.json({
       message: "Upload thành công!",
       url: req.file.path,
       type: req.file.mimetype,
       name: req.file.originalname,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Upload thất bại" });
+    return res.status(500).json({ error: "Upload thất bại" });
   }
 };

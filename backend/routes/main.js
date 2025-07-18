@@ -3,7 +3,7 @@ const router = express.Router();
 const { db, admin } = require("../config/firebase");
 
 router.get("/", async (req, res) => {
-  res.send("Kết nối Firestore thành công!");
+  return res.send("Kết nối Firestore thành công!");
 });
 router.get("/:id", async (req, res) => {
   try {

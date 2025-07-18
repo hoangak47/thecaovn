@@ -37,7 +37,6 @@ const getData = async ({ id }) => {
 
     return result || defaultData;
   } catch (error) {
-    console.error("Lỗi khi tải dữ liệu:", error);
     return defaultData;
   }
 };

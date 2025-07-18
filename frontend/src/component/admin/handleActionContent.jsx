@@ -18,7 +18,6 @@ export default function HandleAction({
         alert("Cập nhật thành công!");
         router.back();
       } catch (error) {
-        console.error("Lỗi khi cập nhật:", error);
         alert("Cập nhật thất bại!");
       }
     } else {
@@ -27,7 +26,6 @@ export default function HandleAction({
         alert("Thêm mới thành công!");
         goback && router.back();
       } catch (error) {
-        console.error("Lỗi khi thêm mới:", error);
         alert("Thêm mới thất bại!");
       }
     }

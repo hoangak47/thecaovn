@@ -14,7 +14,7 @@ export default function page() {
         setData(res.data);
       })
       .catch((error) => {
-        console.error("Lỗi khi lấy dữ liệu:", error);
+        setData([]);
       });
   }, []);
   if (!data) {
@@ -33,7 +33,7 @@ export default function page() {
         setData((prevData) => prevData.filter((item) => item.id !== id));
       })
       .catch((error) => {
-        console.error("Lỗi khi xóa dữ liệu:", error);
+        alert("Lỗi khi xóa dữ liệu");
       });
   };
 

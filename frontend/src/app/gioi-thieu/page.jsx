@@ -18,7 +18,6 @@ async function getData() {
       schema: result.schema ? result.schema : "",
     };
   } catch (error) {
-    console.error("Error fetching data:", error);
     return {
       title: "",
       short_description: "",

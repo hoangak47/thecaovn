@@ -20,9 +20,11 @@ router.post("/", async (req, res) => {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    res.status(201).json({ id: ref.id, message: "Them tieu chi thanh cong" });
+    return res
+      .status(201)
+      .json({ id: ref.id, message: "Them tieu chi thanh cong" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -34,9 +36,9 @@ router.get("/", async (req, res) => {
     querySnapshot.forEach((doc) => {
       slides.push({ id: doc.id, ...doc.data() });
     });
-    res.status(200).json(slides);
+    return res.status(200).json(slides);
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -44,9 +46,9 @@ router.get("/:id", async (req, res) => {
   try {
     const ref = db.collection("tieu-chi").doc(req.params.id);
     const doc = await ref.get();
-    res.status(200).json({ id: doc.id, ...doc.data() });
+    return res.status(200).json({ id: doc.id, ...doc.data() });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -67,9 +69,9 @@ router.put("/:id", async (req, res) => {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    res.status(200).json({ message: "Cap nhat tieu chi thanh cong" });
+    return res.status(200).json({ message: "Cap nhat tieu chi thanh cong" });
   } catch (error) {
-    res.status(500).send(`Loi: ${error.message}`);
+    return res.status(500).send(`Loi: ${error.message}`);
   }
 });
 
@@ -78,9 +80,9 @@ router.delete("/:id", async (req, res) => {
     const ref = db.collection("tieu-chi").doc(req.params.id);
     const doc = await ref.get();
     await ref.delete();
-    res.status(200).json({ message: "Xoa tieu chi thanh cong" });
+    return res.status(200).json({ message: "Xoa tieu chi thanh cong" });
   } catch (error) {
-    res.status(500).send(`Loi: ${error.message}`);
+    return res.status(500).send(`Loi: ${error.message}`);
   }
 });
 

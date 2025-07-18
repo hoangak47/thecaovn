@@ -18,7 +18,7 @@ export default function KhachHang() {
         const result = await res.json();
         setData(result);
       } catch (error) {
-        console.error("Slide fetch error:", error);
+        setData([]);
       }
     };
 
@@ -60,7 +60,7 @@ export default function KhachHang() {
         }}
         pagination={{ clickable: true }}
         modules={[Autoplay]}
-        loop={true}
+        loop={data.length > 4}
         className="mySwiper"
       >
         {data.map((item, index) => (

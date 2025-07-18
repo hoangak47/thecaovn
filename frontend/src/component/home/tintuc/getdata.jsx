@@ -11,7 +11,6 @@ export default async function getDataTinTuc() {
 
     return (await res.data) || [];
   } catch (error) {
-    console.error("GioiThieu fetch error:", error);
     return null;
   }
 }

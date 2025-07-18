@@ -8,6 +8,7 @@ import React, { act } from "react";
 import NoImage from "@/assets/images/noimage.png";
 import HandleAction from "@/component/admin/handleActionContent";
 import axios from "axios";
+import MultipleImage from "@/component/admin/multipleImage";
 
 export default function page() {
   const [data, setData] = React.useState({
@@ -31,16 +32,33 @@ export default function page() {
 
   const url = process.env.NEXT_PUBLIC_API_URL;
 
-  const [options, setOptions] = React.useState([]);
+  const [options, setOptions] = React.useState([
+    { label: "Sản phẩm", value: "san-pham" },
+    { label: "Ngành Nghề", value: "nganh-nghe" },
+    { label: "Gia Công", value: "gia-cong" },
+  ]);
+  const [options1, setOptions1] = React.useState([]);
   React.useEffect(() => {
-    axios.get(`${url}danh-muc?search=san-pham`).then((response) => {
+    axios.get(`${url}danh-muc`).then((response) => {
       const mapped = response.data.map((item) => ({
         value: item.url, // hoặc item.id nếu bạn muốn
         label: item.title,
       }));
-      setOptions(mapped);
+      setOptions1(mapped);
     });
   }, []);
+
+  const [selectOptions, setSelectOptions] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`${url}danh-muc?search=${selectOptions}`).then((response) => {
+      const mapped = response.data.map((item) => ({
+        value: item.url,
+        label: item.title,
+      }));
+      setOptions1(mapped);
+    });
+  }, [selectOptions]);
 
   return (
     <div className="bg-[#f8f9fc] text-[#3a3a3a] font-sans text-sm leading-relaxed overflow-y-auto">
@@ -76,6 +94,31 @@ export default function page() {
                 <select
                   className="w-full px-[15px] py-[12px] border border-gray-300 rounded-md text-sm text-gray-800 bg-white cursor-pointer transition-all duration-300 ease-in-out focus:outline-none focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20"
                   value={data.parent_category}
+                  onChange={(e) => {
+                    setData((prev) => ({
+                      ...prev,
+                      parent_category: e.target.value,
+                    }));
+                    setSelectOptions(e.target.value);
+                  }}
+                >
+                  <option value="">Tất cả danh mục</option>
+                  {options.map((option, idx) => (
+                    <option key={idx} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+
+                <label
+                  htmlFor="category"
+                  className="block text-gray-700 mb-2 text-sm font-normal"
+                >
+                  Danh mục cấp 2:
+                </label>
+                <select
+                  className="w-full px-[15px] py-[12px] border border-gray-300 rounded-md text-sm text-gray-800 bg-white cursor-pointer transition-all duration-300 ease-in-out focus:outline-none focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20"
+                  value={data.parent_category}
                   onChange={(e) =>
                     setData((prev) => ({
                       ...prev,
@@ -84,7 +127,12 @@ export default function page() {
                   }
                 >
                   <option value="">Tất cả danh mục</option>
-                  {options.map((option, idx) => (
+                  {/* {options.map((option, idx) => (
+                    <option key={idx} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))} */}
+                  {options1.map((option, idx) => (
                     <option key={idx} value={option.value}>
                       {option.label}
                     </option>

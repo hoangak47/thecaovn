@@ -6,6 +6,7 @@ import Suggestion from "@/component/suggestion";
 import axios from "axios";
 import LoadListProduct from "./loadListProduct";
 import { cache } from "react";
+import ImageGallery from "@/component/imageGallery";
 
 const getData = cache(async (id) => {
   const url = process.env.NEXT_PUBLIC_API_URL;
@@ -81,14 +82,19 @@ export default async function page({ params }) {
   const detail_sanPham = await getDetailProduct(id);
   const sanPham = await getSanPham(detail_sanPham?.parent_category || id);
 
+  const schema = sanPham?.schema || detail_sanPham?.schema || data?.schema;
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: sanPham?.schema || detail_sanPham?.schema || data.schema,
-        }}
-      />
+      {schema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: schema,
+          }}
+        />
+      )}
+
       <Slide data={slideData} />
 
       <div className="container mx-auto xl:px-12 py-16">
@@ -127,6 +133,7 @@ export default async function page({ params }) {
                 />
                 <div className="w-full h-[1px] bg-[#000] my-10"></div>
                 <LoadListProduct sanPham={sanPham} max={4} />
+                <ImageGallery data={data} />
               </>
             )}
 

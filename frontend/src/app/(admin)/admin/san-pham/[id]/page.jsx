@@ -35,7 +35,7 @@ export default function page({ params }) {
         setData(res.data);
       })
       .catch((error) => {
-        console.error("Lỗi khi lấy dữ liệu:", error);
+        setData(data);
       });
   }, []);
 
@@ -63,6 +63,7 @@ export default function page({ params }) {
             setData={setData}
             url={`${url}san-pham`}
             data={data}
+            id={id}
           />
 
           <RenderMainContentFields

@@ -18,7 +18,7 @@ export default function Doitac() {
         const result = await res.json();
         setData(result);
       } catch (error) {
-        console.error("Slide fetch error:", error);
+        setData([]);
       }
     };
 
@@ -34,7 +34,7 @@ export default function Doitac() {
         </p>
       </h1>
       <Swiper
-        slidesPerView={5}
+        slidesPerView={4}
         breakpoints={{
           0: {
             slidesPerView: 2,
@@ -60,7 +60,7 @@ export default function Doitac() {
         }}
         pagination={{ clickable: true }}
         modules={[Autoplay]}
-        loop={true}
+        loop={data.length > 4}
         className="mySwiper"
       >
         {data.map((item, index) => (

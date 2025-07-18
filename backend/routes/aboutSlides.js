@@ -20,9 +20,11 @@ router.post("/", async (req, res) => {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    res.status(201).json({ id: aboutRef.id, message: "Them slide thanh cong" });
+    return res
+      .status(201)
+      .json({ id: aboutRef.id, message: "Them slide thanh cong" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -34,9 +36,9 @@ router.get("/", async (req, res) => {
     querySnapshot.forEach((doc) => {
       slides.push({ id: doc.id, ...doc.data() });
     });
-    res.status(200).json(slides);
+    return res.status(200).json(slides);
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -44,9 +46,9 @@ router.delete("/:id", async (req, res) => {
   try {
     const aboutRef = db.collection("slide").doc(req.params.id);
     await aboutRef.delete();
-    res.status(200).json({ message: "Xoa slide thanh cong" });
+    return res.status(200).json({ message: "Xoa slide thanh cong" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -61,9 +63,9 @@ router.put("/:id", async (req, res) => {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    res.status(200).json({ message: "Cap nhat slide thanh cong" });
+    return res.status(200).json({ message: "Cap nhat slide thanh cong" });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 
@@ -71,9 +73,9 @@ router.get("/:id", async (req, res) => {
   try {
     const aboutRef = db.collection("slide").doc(req.params.id);
     const doc = await aboutRef.get();
-    res.status(200).json({ id: doc.id, ...doc.data() });
+    return res.status(200).json({ id: doc.id, ...doc.data() });
   } catch (error) {
-    res.status(500).send(`Lỗi: ${error.message}`);
+    return res.status(500).send(`Lỗi: ${error.message}`);
   }
 });
 

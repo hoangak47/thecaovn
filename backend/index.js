@@ -14,6 +14,7 @@ const mainRoutes = require("./routes/main.js");
 const sanPhamRoutes = require("./routes/sanPham.js");
 const lienHeRoutes = require("./routes/lienHe.js");
 const loginRoutes = require("./routes/login.js");
+const footerRoutes = require("./routes/footer.js");
 
 const app = express();
 app.use(express.json());
@@ -59,6 +60,7 @@ app.use("/tin-tuc", tinTucRoutes);
 app.use("/san-pham", sanPhamRoutes);
 app.use("/lien-he", lienHeRoutes);
 app.use("/login", loginRoutes);
+app.use("/footer", footerRoutes);
 app.use("/", mainRoutes);
 
 // Khởi động server

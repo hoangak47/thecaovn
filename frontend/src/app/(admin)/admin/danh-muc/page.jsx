@@ -10,10 +10,11 @@ export default function page() {
     const response = axios.get(`${process.env.NEXT_PUBLIC_API_URL}danh-muc`);
     response
       .then((res) => {
+        console.log(res.data);
         setData(res.data);
       })
       .catch((error) => {
-        console.error("Lỗi khi lấy dữ liệu:", error);
+        setData([]);
       });
   }, []);
   if (!data) {
@@ -32,7 +33,7 @@ export default function page() {
         setData((prevData) => prevData.filter((item) => item.id !== id));
       })
       .catch((error) => {
-        console.error("Lỗi khi xóa dữ liệu:", error);
+        alert("Lỗi khi xóa dữ liệu");
       });
   };
 
@@ -94,14 +95,6 @@ export default function page() {
                 </td>
 
                 <td className="border-r border-gray-200 px-4 py-3 text-center">
-                  {/* <label className="inline-flex items-center cursor-pointer relative">
-                    <input
-                      aria-label="Toggle display for row 1"
-                      defaultChecked={item.active || false}
-                      className="toggle-switch"
-                      type="checkbox"
-                    />
-                  </label> */}
                   {item?.parent_category || ""}
                 </td>
                 <td className="px-4 py-3 text-center space-x-4 text-[#c32127]">

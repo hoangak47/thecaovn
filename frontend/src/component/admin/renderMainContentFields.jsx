@@ -15,6 +15,7 @@ export default function RenderMainContentFields({
   url = true,
   children,
   short_description_input = "input",
+  haveUploadImage = true,
 }) {
   const [editorReady, setEditorReady] = useState(false);
   useEffect(() => {
@@ -27,7 +28,11 @@ export default function RenderMainContentFields({
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       />
-      <div className="lg:col-span-9 bg-white rounded border border-gray-200 p-4 shadow-sm">
+      <div
+        className={`${
+          haveUploadImage ? "lg:col-span-9" : "lg:col-span-12"
+        } bg-white rounded border border-gray-200 p-4 shadow-sm`}
+      >
         <form className="mt-3 space-y-4 text-xs text-[#6c757d]">
           {url && (
             <div>
@@ -114,15 +119,16 @@ export default function RenderMainContentFields({
           )}
         </form>
       </div>
-      <div className="lg:col-span-3 space-y-6">
-        <ImageUploader
-          url={data?.image}
-          title={data?.title}
-          onChange={(url) => setData((prev) => ({ ...prev, image: url }))}
-        />
-
-        {children}
-      </div>
+      {haveUploadImage && (
+        <div className="lg:col-span-3 space-y-6">
+          <ImageUploader
+            url={data?.image}
+            title={data?.title}
+            onChange={(url) => setData((prev) => ({ ...prev, image: url }))}
+          />
+          {children}
+        </div>
+      )}
     </div>
   );
 }

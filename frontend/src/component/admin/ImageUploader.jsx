@@ -38,7 +38,6 @@ function ImageUploader({ url, title, onChange }) {
         alert("Upload thất bại");
       }
     } catch (err) {
-      console.error("Upload error:", err);
       alert("Lỗi khi upload ảnh");
     }
   };

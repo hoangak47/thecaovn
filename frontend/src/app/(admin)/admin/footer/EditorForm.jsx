@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createSchema } from "@/component/admin/createSchema";
 import HandleAction from "@/component/admin/handleActionContent";
-import RenderMainContentFields from "@/component/admin/renderMainContentFields";
+import LegacyCKEditor from "@/component/admin/LegacyCKEditor";
 
 export default function EditorForm({ initialData }) {
   const [data, setData] = useState(initialData);
-
-  // Đảm bảo editor load sau khi render hoàn chỉnh
 
   const handleChange = (key) => (value) => {
     setData((prev) => ({ ...prev, [key]: value }));
@@ -22,25 +21,32 @@ export default function EditorForm({ initialData }) {
           <HandleAction
             initialData={initialData}
             setData={setData}
-            url={`${url}lien-he`}
+            url={`${url}gioi-thieu`}
             data={data}
-            goback={false}
           />
 
-          <RenderMainContentFields
+          {/* <RenderMainContentFields
             data={data}
             setData={setData}
             handleChange={handleChange}
             url={false}
-            short_description={false}
+            short_description_input="t"
+            haveUploadImage={false}
+          /> */}
+
+          <LegacyCKEditor
+            key="short_description"
+            id="editor1"
+            // onChange={handleChange("short_description")}
+            placeholder="Mô tả (vi)"
+            value={data?.short_description || ""}
           />
 
           <HandleAction
             initialData={initialData}
             setData={setData}
-            url={`${url}lien-he`}
+            url={`${url}gioi-thieu`}
             data={data}
-            goback={false}
           />
         </div>
       </div>

@@ -30,7 +30,10 @@ const menuItems = [
   },
   {
     title: "QUẢN LÝ TRANG",
-    items: [{ name: "Liên hệ", link: "/admin/lien-he" }],
+    items: [
+      { name: "Liên hệ", link: "/admin/lien-he" },
+      { name: "Footer", link: "/admin/footer" },
+    ],
   },
 ];
 
