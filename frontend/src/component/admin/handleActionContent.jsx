@@ -16,7 +16,8 @@ export default function HandleAction({
       try {
         await axios.put(`${url}/${id}`, data);
         alert("Cập nhật thành công!");
-        router.back();
+
+        goback && router.back();
       } catch (error) {
         alert("Cập nhật thất bại!");
       }

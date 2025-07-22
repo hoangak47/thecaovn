@@ -1,7 +1,13 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-export default function Editor({ id = "editor1", onChange, value }) {
+export default function Editor({
+  id = "editor1",
+  onChange,
+  value,
+  disableImageUpload = false,
+  height = null,
+}) {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const expressUploadUrl = `${url}upload`;
 
@@ -13,14 +19,20 @@ export default function Editor({ id = "editor1", onChange, value }) {
       ckeditorScript.src = "https://hoangak47.github.io/ckeditor/ckeditor.js";
       ckeditorScript.onload = () => {
         if (window.CKEDITOR && !window.CKEDITOR.instances[id]) {
-          const editor = window.CKEDITOR.replace(id, {
+          const config = {
             filebrowserUploadUrl: expressUploadUrl,
             filebrowserUploadMethod: "form",
             filebrowserImageUploadUrl: expressUploadUrl,
             removeDialogTabs: "link:upload;image:Upload",
             contentsCss:
               "https://cdn.ckeditor.com/4.16.2/standard-all/contents.css",
-          });
+          };
+
+          if (height) {
+            config.height = height;
+          }
+
+          const editor = window.CKEDITOR.replace(id, config);
 
           editorRef.current = editor;
 
@@ -30,6 +42,8 @@ export default function Editor({ id = "editor1", onChange, value }) {
           });
 
           editor.on("instanceReady", () => {
+            if (disableImageUpload) return;
+
             const uploadButton = document.createElement("button");
             uploadButton.type = "button";
             uploadButton.textContent = "📤 Tải ảnh/video lên";

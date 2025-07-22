@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { createSchema } from "@/component/admin/createSchema";
 import HandleAction from "@/component/admin/handleActionContent";
 import LegacyCKEditor from "@/component/admin/LegacyCKEditor";
 
-export default function EditorForm({ initialData }) {
+export default function EditorForm({ initialData = {} }) {
   const [data, setData] = useState(initialData);
 
   const handleChange = (key) => (value) => {
@@ -21,32 +20,58 @@ export default function EditorForm({ initialData }) {
           <HandleAction
             initialData={initialData}
             setData={setData}
-            url={`${url}gioi-thieu`}
+            url={`${url}footer`}
             data={data}
+            goback={false}
+            id={data?.id || null}
           />
 
-          {/* <RenderMainContentFields
-            data={data}
-            setData={setData}
-            handleChange={handleChange}
-            url={false}
-            short_description_input="t"
-            haveUploadImage={false}
-          /> */}
-
+          <label className="block mb-1 font-normal text-[#6c757d]">
+            Địa chỉ (vi)
+          </label>
           <LegacyCKEditor
-            key="short_description"
-            id="editor1"
-            // onChange={handleChange("short_description")}
-            placeholder="Mô tả (vi)"
-            value={data?.short_description || ""}
+            key="address"
+            id="address"
+            onChange={handleChange("address")}
+            placeholder="Địa chỉ (vi)"
+            value={data?.address || ""}
+            disableImageUpload
+            height={200} // chiều cao px
+          />
+
+          <label className="block mb-1 font-normal text-[#6c757d]">
+            Liên hệ (vi)
+          </label>
+          <LegacyCKEditor
+            key="contact"
+            id="contact"
+            onChange={handleChange("contact")}
+            placeholder="Liên hệ (vi)"
+            value={data?.contact || ""}
+            disableImageUpload
+            height={200} // chiều cao px
+          />
+
+          <label className="block mb-1 font-normal text-[#6c757d]">
+            Hotline (vi)
+          </label>
+          <LegacyCKEditor
+            key="hotline"
+            id="hotline"
+            onChange={handleChange("hotline")}
+            placeholder="Hotline (vi)"
+            value={data?.hotline || ""}
+            disableImageUpload
+            height={200} // chiều cao px
           />
 
           <HandleAction
             initialData={initialData}
             setData={setData}
-            url={`${url}gioi-thieu`}
+            url={`${url}footer`}
             data={data}
+            goback={false}
+            id={data?.id || null}
           />
         </div>
       </div>

@@ -1,13 +1,14 @@
-"use client";
+// "use client";
 
-import { usePathname } from "next/navigation";
 import Layout from "@/constants/layout/layout";
 import Body from "@/constants/body";
 import { GlobalProvider } from "@/context/GlobalContext";
+import { headers } from "next/headers";
 
-export default function ClientWrapper({ children }) {
-  const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin");
+export default async function ClientWrapper({ children }) {
+  const headersList = await headers();
+  const referer = headersList.get("referer") || "";
+  const isAdmin = referer.includes("/admin");
 
   if (isAdmin) return children;
 

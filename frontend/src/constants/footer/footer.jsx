@@ -4,8 +4,27 @@ import Image from "next/image";
 import { SVGfacebook, SVGmastercard, SVGvisa, SVGyoutube } from "@/assets/svg";
 
 import logo from "@/assets/images/logo.png";
+import axios from "axios";
 
-export default function Footer() {
+async function getFooter() {
+  try {
+    const url = process.env.NEXT_PUBLIC_API_URL;
+    const res = await axios.get(`${url}footer`);
+    return res.data;
+  } catch (error) {
+    return {
+      address:
+        "362/109 Hiệp Thành 13, Khu Phố 7, Phường Hiệp Thành, Quận 12, TP.HCM",
+      contact:
+        "<p>0938 791 097 (Mrs.Phượng)</p> <p>0909 673 260 (Mrs.Phương)</p> <p>0934 833 585 (Mrs.Hà)</p>",
+      hotline:
+        "<p>0788 388 588 (Mr. Vũ)</p> <p>Email: lamtanvu232@gmail.com</p> <p>MST: 0301859395</p>",
+    };
+  }
+}
+
+export default async function Footer() {
+  const data = await getFooter();
   return (
     <div
       style={{
@@ -24,29 +43,15 @@ export default function Footer() {
         </div>
         <div className="flex flex-col md:items-start items-center">
           <h2 className="text-3xl mb-4">Địa chỉ</h2>
-          <p className="text-center md:text-left">
-            362/109 Hiệp Thành 13, Khu Phố 7, Phường Hiệp Thành, Quận 12, Thành
-            phố Hồ Chí Minh
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data.address || "" }} />
         </div>
         <div className="flex flex-col md:items-start items-center">
           <h2 className="text-3xl mb-4">Liên hệ</h2>
-          <p>
-            <a href="tel:+84938791097">0938 791 097</a>(Mrs.Phượng)
-            <br />
-            <a href="tel:+84909673260">0909 673 260</a>(Mrs.Phương)
-            <br />
-            <a href="tel:+84934833585">0934 833 585</a> (Mrs.Hà)
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data.contact || "" }} />
         </div>
         <div className="flex flex-col md:items-start items-center">
           <h2 className="text-3xl mb-4">Hotline</h2>
-          <a href="tel:+84788388588">0788 388 588 (Mr. Vũ)</a>
-          <p>
-            Email:
-            <a href="mailto:lamtanvu232@gmai.com"> lamtanvu232@gmail.com</a>
-          </p>
-          MST: 0301859395
+          <div dangerouslySetInnerHTML={{ __html: data.hotline || "" }} />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-auto px-0 pt-10">
