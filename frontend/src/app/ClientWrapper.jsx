@@ -11,7 +11,7 @@ export default async function ClientWrapper({ children }) {
   console.log("Referer:", referer);
   const isAdmin = await referer.includes("/admin");
 
-  if (isAdmin) return children;
+  if (!isAdmin) return children;
 
   return (
     <GlobalProvider>
