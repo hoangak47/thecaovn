@@ -15,6 +15,7 @@ const sanPhamRoutes = require("./routes/sanPham.js");
 const lienHeRoutes = require("./routes/lienHe.js");
 const loginRoutes = require("./routes/login.js");
 const footerRoutes = require("./routes/footer.js");
+const menuRoutes = require("./routes/menu.js");
 
 const app = express();
 app.use(express.json());
@@ -61,6 +62,7 @@ app.use("/san-pham", sanPhamRoutes);
 app.use("/lien-he", lienHeRoutes);
 app.use("/login", loginRoutes);
 app.use("/footer", footerRoutes);
+app.use("/menu", menuRoutes);
 app.use("/", mainRoutes);
 
 // Khởi động server
