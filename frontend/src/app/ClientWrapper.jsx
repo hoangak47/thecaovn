@@ -8,7 +8,7 @@ import { headers } from "next/headers";
 export default async function ClientWrapper({ children }) {
   const headersList = await headers();
   const referer = headersList.get("referer") || "";
-  const isAdmin = referer.includes("/admin");
+  const isAdmin = await referer.includes("/admin");
 
   if (isAdmin) return children;
 
