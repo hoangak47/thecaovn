@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import footerImage from "@/assets/images/footer.jpg";
 import Image from "next/image";
@@ -23,8 +25,22 @@ async function getFooter() {
   }
 }
 
-export default async function Footer() {
-  const data = await getFooter();
+export default function Footer() {
+  const [data, setData] = React.useState({
+    address:
+      "362/109 Hiệp Thành 13, Khu Phố 7, Phường Hiệp Thành, Quận 12, TP.HCM",
+    contact:
+      "<p>0938 791 097 (Mrs.Phượng)</p> <p>0909 673 260 (Mrs.Phương)</p> <p>0934 833 585 (Mrs.Hà)</p>",
+    hotline:
+      "<p>0788 388 588 (Mr. Vũ)</p> <p>Email: lamtanvu232@gmail.com</p> <p>MST: 0301859395</p>",
+  });
+
+  React.useEffect(() => {
+    getFooter().then((res) => {
+      setData(res);
+    });
+  }, []);
+
   return (
     <div
       style={{
