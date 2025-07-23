@@ -3,7 +3,7 @@
 import FormSchema from "@/component/admin/formSchema";
 import FormSEO from "@/component/admin/formSEO";
 import RenderMainContentFields from "@/component/admin/renderMainContentFields";
-import React, { act } from "react";
+import React from "react";
 
 import NoImage from "@/assets/images/noimage.png";
 import HandleAction from "@/component/admin/handleActionContent";
@@ -22,6 +22,7 @@ export default function page() {
     SEO_keywords: "",
     SEO_image: NoImage.src,
     schema: "",
+    multiple_image: [],
   });
 
   const handleChange = (key) => (value) => {
@@ -102,7 +103,10 @@ export default function page() {
             </div>
           </RenderMainContentFields>
 
-          <MultipleImage initialData={data} setData={setData} />
+          <MultipleImage
+            initialData={data?.multiple_image || []}
+            setData={setData}
+          />
           <FormSEO data={data} setData={setData} handleChange={handleChange} />
           <FormSchema
             data={data}
