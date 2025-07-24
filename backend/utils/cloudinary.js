@@ -15,12 +15,12 @@ const storage = new CloudinaryStorage({
   params: (req, file) => {
     const isVideo = file.mimetype.startsWith("video/");
     const baseName = file.originalname.split(".")[0];
-    const nanoId = process.hrtime.bigint().toString();
+    const timestamp = Date.now();
     return {
       folder: "the-cao",
       resource_type: isVideo ? "video" : "image",
       allowed_formats: ["jpg", "png", "jpeg", "webp", "mp4", "mov", "avi"],
-      public_id: `${baseName}_${nanoId}`,
+      public_id: `${baseName}_${timestamp}`,
     };
   },
 });
