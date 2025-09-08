@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint","export": "next export"
-  },"dependencies": {
+  },
+  "dependencies": {
     "axios": "^1.10.0",
     "next": "^15.3.4",
     "react": "^19.0.0",
@@ -15,12 +16,12 @@
     "swiper": "^11.2.8"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "24.0.3",
     "@types/react": "19.1.8",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "tailwindcss": "^4"
+    "eslint-config-next": "15.4.6",
+    "@eslint/eslintrc": "^3"
   }
 }
