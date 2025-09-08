@@ -56,6 +56,7 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const data = await getData();
+  console.log(data);
   return (
     <>
       {data.schema && (
