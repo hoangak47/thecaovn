@@ -39,6 +39,8 @@ export default function EditorForm({ initialData }) {
             setData={setData}
             url={`${url}gioi-thieu`}
             data={data}
+            goback={false}
+            id={"gioi-thieu"}
           />
 
           <RenderMainContentFields
@@ -60,6 +62,8 @@ export default function EditorForm({ initialData }) {
             setData={setData}
             url={`${url}gioi-thieu`}
             data={data}
+            goback={false}
+            id={"gioi-thieu"}
           />
         </div>
       </div>

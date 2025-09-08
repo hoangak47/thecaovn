@@ -12,7 +12,16 @@ export default function HandleAction({
 }) {
   const router = useRouter();
   const handleSave = async () => {
-    if (id) {
+    if ((id = "gioi-thieu")) {
+      try {
+        await axios.put(`${url}`, data);
+        alert("Cập nhật thành công!");
+
+        goback && router.back();
+      } catch (error) {
+        alert("Cập nhật thất bại!");
+      }
+    } else if (id) {
       try {
         await axios.put(`${url}/${id}`, data);
         alert("Cập nhật thành công!");

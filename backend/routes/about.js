@@ -44,27 +44,28 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.put("/", async (req, res) => {
-//   try {
-//     const { name, email, age } = req.body;
-//     const userRef = db.collection("users").doc(req.params.id);
-//     const doc = await userRef.get();
+router.put("/", async (req, res) => {
+  try {
+    const { title, short_description, description, ...rest } = req.body;
+    const aboutRef = db.collection("gioi-thieu").doc("gioi-thieu");
+    const doc = await aboutRef.get();
 
-//     if (!doc.exists) {
-//       return res.status(404).send("Không tìm thấy người dùng");
-//     }
+    if (!doc.exists) {
+      return res.status(404).send("Khong tim thay thong tin");
+    }
 
-//     await userRef.update({
-//       name: name || doc.data().name,
-//       email: email || doc.data().email,
-//       age: age || doc.data().age,
-//       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-//     });
+    await aboutRef.update({
+      title: title || doc.data().title,
+      short_description: short_description || doc.data().short_description,
+      description: description || doc.data().description,
+      ...rest,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
-//     res.status(200).json({ message: "Cập nhật người dùng thành công" });
-//   } catch (error) {
-//     res.status(500).send(`Lỗi: ${error.message}`);
-//   }
-// });
+    return res.status(200).json({ message: "Cap nhat thong tin thanh cong" });
+  } catch (error) {
+    return res.status(500).send(`Loi: ${error.message}`);
+  }
+});
 
 module.exports = router;
