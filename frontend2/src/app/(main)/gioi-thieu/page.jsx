@@ -4,7 +4,14 @@ import NoImage from "@/assets/images/noimage.png";
 async function getData() {
   try {
     const url = process.env.NEXT_PUBLIC_API_URL;
-    const response = await fetch(`${url}gioi-thieu`);
+    const response = await fetch(`${url}gioi-thieu`, {
+      cache: "no-store", // Thêm để tránh cache
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
     const result = await response.json();
     return {
       title: result.title || "",
@@ -18,6 +25,7 @@ async function getData() {
       schema: result.schema ? result.schema : "",
     };
   } catch (error) {
+    console.error("Error fetching data:", error);
     return {
       title: "",
       short_description: "",
@@ -56,7 +64,6 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const data = await getData();
-  console.log(data);
   return (
     <>
       {data.schema && (
@@ -66,7 +73,11 @@ export default async function Page() {
         />
       )}
       <div className="container mx-auto p-4 mb-10">
-        <img src={data.image} alt={data.title} className="w-full h-[80vh]" />
+        <img
+          src={data.image}
+          alt={data.title}
+          className="w-full h-[80vh] object-cover"
+        />
       </div>
       <div
         className="ck-content xl:px-28 px-4 mt-10"
