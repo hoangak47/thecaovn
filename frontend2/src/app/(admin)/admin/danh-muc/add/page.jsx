@@ -46,6 +46,7 @@ export default function page() {
             setData={setData}
             url={`${url}danh-muc`}
             data={data}
+            redirectTo={"/admin/danh-muc"}
           />
 
           <RenderMainContentFields
@@ -118,6 +119,7 @@ export default function page() {
             setData={setData}
             url={`${url}danh-muc`}
             data={data}
+            redirectTo={"/admin/danh-muc"}
           />
         </div>
       </div>

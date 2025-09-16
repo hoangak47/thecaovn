@@ -164,6 +164,7 @@ export default function page({ params }) {
             url={`${process.env.NEXT_PUBLIC_API_URL}danh-muc`}
             data={data}
             id={id}
+            redirectTo={"/admin/danh-muc"}
           />
         </div>
       </div>

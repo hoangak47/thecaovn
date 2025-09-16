@@ -40,6 +40,7 @@ export default function EditorForm({ id = null }) {
             url={`${url}khach-hang`}
             data={data}
             id={id}
+            redirectTo="/admin/khach-hang"
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -76,6 +77,8 @@ export default function EditorForm({ id = null }) {
             setData={setData}
             url={`${url}khach-hang`}
             data={data}
+            redirectTo="/admin/khach-hang"
+            id={id}
           />
         </div>
       </div>
