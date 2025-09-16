@@ -67,7 +67,9 @@ export default function RenderMainContentFields({
               type="text"
               onChange={(e) => {
                 handleChange("title")(e.target.value);
-                handleChange("url")(slugify(e.target.value));
+                data.url
+                  ? data.url
+                  : handleChange("url")(slugify(e.target.value));
               }}
             />
           </div>

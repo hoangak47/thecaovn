@@ -40,7 +40,7 @@ export default function page() {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         rel="stylesheet"
       />
-      <h1 className="text-lg font-semibold mb-6">Quản lý/Slideshow</h1>
+      <h1 className="text-lg font-semibold mb-6">Quản lý khách hàng</h1>
       <HandleAction />
       <section className="overflow-x-auto rounded-lg shadow-md">
         <table className="min-w-full border-collapse border border-gray-200 text-xs text-[#5a5c6c]">
@@ -91,7 +91,7 @@ export default function page() {
                   <a
                     aria-label={`Edit row ${index + 1}`}
                     className="hover:text-[#a31a20]"
-                    href={`/admin/slide/${item.id}`}
+                    href={`/admin/khach-hang/${item.id}`}
                   >
                     <i className="fas fa-pen"></i>
                   </a>
