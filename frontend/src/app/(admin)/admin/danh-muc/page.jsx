@@ -10,7 +10,6 @@ export default function page() {
     const response = axios.get(`${process.env.NEXT_PUBLIC_API_URL}danh-muc`);
     response
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((error) => {

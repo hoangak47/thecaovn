@@ -37,6 +37,7 @@ router.get("/", async (req, res) => {
     const querySnapshot = await db
       .collection("categories")
       .where("parent_category", "==", search)
+      .orderBy("order", "asc")
       .orderBy("updatedAt", "desc")
       .get();
     querySnapshot.forEach((doc) => {
@@ -49,6 +50,7 @@ router.get("/", async (req, res) => {
     const categories = [];
     const querySnapshot = await db
       .collection("categories")
+      .orderBy("order", "asc")
       .orderBy("updatedAt", "desc")
       .get();
     querySnapshot.forEach((doc) => {

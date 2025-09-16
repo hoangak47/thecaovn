@@ -23,6 +23,8 @@ export default function page({ params }) {
     SEO_keywords: "",
     SEO_image: NoImage.src,
     schema: "",
+    order: 0,
+    multiple_image: [],
   });
 
   const { id } = use(params);
@@ -31,7 +33,6 @@ export default function page({ params }) {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}danh-muc/${id}`)
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((error) => {
@@ -115,6 +116,31 @@ export default function page({ params }) {
                       </option>
                     ))}
                   </datalist>
+                </div>
+              </form>
+            </div>
+            <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg">
+              <div className="px-5 py-3 border-b border-gray-300">
+                <h2 className="text-gray-700 font-semibold text-base">
+                  Số thứ tự hiển thị
+                </h2>
+              </div>
+              <form className="p-5">
+                <div className="relative">
+                  <input
+                    id="order"
+                    type="number"
+                    min="0"
+                    placeholder="Nhập số thứ tự"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    value={data?.order || 0}
+                    onChange={(e) => {
+                      setData((prev) => ({
+                        ...prev,
+                        order: parseInt(e.target.value) || 0,
+                      }));
+                    }}
+                  />
                 </div>
               </form>
             </div>

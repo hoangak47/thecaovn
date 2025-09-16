@@ -11,7 +11,29 @@ export default function page() {
     response
       .then((res) => {
         console.log(res.data);
-        setData(res.data);
+        // Sắp xếp theo updatedAt mới nhất (giảm dần) — parse Firestore Timestamp hoặc chuỗi ngày
+        const items = Array.isArray(res.data)
+          ? res.data
+          : Array.isArray(res.data?.data)
+          ? res.data.data
+          : [];
+
+        const toMillis = (value) => {
+          if (!value) return 0;
+          if (typeof value === "object" && typeof value._seconds === "number") {
+            const secondsMs = value._seconds * 1000;
+            const nanosMs = Math.floor((value._nanoseconds || 0) / 1e6);
+            return secondsMs + nanosMs;
+          }
+          const t = Date.parse(value);
+          return Number.isNaN(t) ? 0 : t;
+        };
+
+        const sortedData = [...items].sort(
+          (a, b) => toMillis(b?.updatedAt) - toMillis(a?.updatedAt)
+        );
+        console.log(sortedData);
+        setData(sortedData);
       })
       .catch((error) => {
         setData([]);
@@ -77,7 +99,7 @@ export default function page() {
                     className="w-14 text-center rounded-md border border-gray-300 py-1 text-xs text-[#5a5c6c] focus:outline-none focus:ring-2 focus:ring-[#c32127] focus:border-[#c32127]"
                     min={0}
                     type="number"
-                    defaultValue={0}
+                    defaultValue={index + 1}
                   />
                 </td>
                 <td className="border-r border-gray-200 px-4 py-3">
