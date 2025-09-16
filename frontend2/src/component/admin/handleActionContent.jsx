@@ -9,6 +9,7 @@ export default function HandleAction({
   data,
   id = null,
   goback = true,
+  redirectTo = null,
 }) {
   const router = useRouter();
   const handleSave = async () => {
@@ -16,8 +17,13 @@ export default function HandleAction({
       try {
         await axios.put(`${url}`, data);
         alert("Cập nhật thành công!");
-
-        goback && router.back();
+        if (goback) {
+          if (redirectTo) {
+            router.push(`${redirectTo}`);
+          } else {
+            router.back();
+          }
+        }
       } catch (error) {
         alert("Cập nhật thất bại!");
       }
@@ -25,8 +31,14 @@ export default function HandleAction({
       try {
         await axios.put(`${url}/${id}`, data);
         alert("Cập nhật thành công!");
-
-        goback && router.back();
+        if (goback) {
+          if (redirectTo) {
+            console.log(redirectTo);
+            router.push(`${redirectTo}`);
+          } else {
+            router.back();
+          }
+        }
       } catch (error) {
         alert("Cập nhật thất bại!");
       }
@@ -34,7 +46,13 @@ export default function HandleAction({
       try {
         await axios.post(url, data);
         alert("Thêm mới thành công!");
-        goback && router.back();
+        if (goback) {
+          if (redirectTo) {
+            router.push(`${redirectTo}`);
+          } else {
+            router.back();
+          }
+        }
       } catch (error) {
         alert("Thêm mới thất bại!");
       }

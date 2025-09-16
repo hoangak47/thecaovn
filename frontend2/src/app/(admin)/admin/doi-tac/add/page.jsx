@@ -40,6 +40,7 @@ export default function EditorForm({ id = null }) {
             url={`${url}doi-tac`}
             data={data}
             id={id}
+            redirectTo="/admin/doi-tac"
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -72,7 +73,13 @@ export default function EditorForm({ id = null }) {
             </div>
           </div>
 
-          <HandleAction setData={setData} url={`${url}doi-tac`} data={data} />
+          <HandleAction
+            setData={setData}
+            url={`${url}doi-tac`}
+            data={data}
+            id={id}
+            redirectTo="/admin/doi-tac"
+          />
         </div>
       </div>
     </div>

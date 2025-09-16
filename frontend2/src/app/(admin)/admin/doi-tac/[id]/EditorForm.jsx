@@ -40,6 +40,7 @@ export default function EditorForm({ id = null }) {
             url={`${url}doi-tac`}
             data={data}
             id={id}
+            redirectTo="/admin/doi-tac"
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -77,6 +78,7 @@ export default function EditorForm({ id = null }) {
             url={`${url}doi-tac`}
             data={data}
             id={id}
+            redirectTo="/admin/doi-tac"
           />
         </div>
       </div>
