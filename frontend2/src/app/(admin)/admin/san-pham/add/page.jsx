@@ -69,6 +69,7 @@ export default function page() {
             setData={setData}
             url={`${url}san-pham`}
             data={data}
+            redirectTo={"/admin/san-pham"}
           />
 
           <RenderMainContentFields
@@ -153,6 +154,7 @@ export default function page() {
             setData={setData}
             url={`${url}san-pham`}
             data={data}
+            redirectTo={"/admin/san-pham"}
           />
         </div>
       </div>

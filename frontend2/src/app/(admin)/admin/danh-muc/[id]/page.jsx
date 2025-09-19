@@ -67,6 +67,7 @@ export default function page({ params }) {
             data={data}
             setData={setData}
             handleChange={handleChange}
+            id={id}
           >
             <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg">
               <div className="px-5 py-3 border-b border-gray-300">

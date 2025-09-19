@@ -16,10 +16,12 @@ export default function RenderMainContentFields({
   children,
   short_description_input = "input",
   haveUploadImage = true,
+  id = null,
 }) {
   const [editorReady, setEditorReady] = useState(false);
   useEffect(() => {
     setEditorReady(true);
+    console.log(id);
   }, []);
 
   return (
@@ -67,9 +69,13 @@ export default function RenderMainContentFields({
               type="text"
               onChange={(e) => {
                 handleChange("title")(e.target.value);
-                data.url
-                  ? data.url
-                  : handleChange("url")(slugify(e.target.value));
+                // Chỉ chạy slugify khi không có id (tạo mới) và chưa có URL hoặc URL hiện tại đang bằng slugify của title cũ
+                if (
+                  !id &&
+                  (!data?.url || data?.url === slugify(data?.title || ""))
+                ) {
+                  handleChange("url")(slugify(e.target.value));
+                }
               }}
             />
           </div>

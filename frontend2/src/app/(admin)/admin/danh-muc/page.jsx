@@ -10,7 +10,6 @@ export default function page() {
     const response = axios.get(`${process.env.NEXT_PUBLIC_API_URL}danh-muc`);
     response
       .then((res) => {
-        console.log(res.data);
         // Sắp xếp theo updatedAt mới nhất (giảm dần) — parse Firestore Timestamp hoặc chuỗi ngày
         const items = Array.isArray(res.data)
           ? res.data
@@ -32,7 +31,6 @@ export default function page() {
         const sortedData = [...items].sort(
           (a, b) => toMillis(b?.updatedAt) - toMillis(a?.updatedAt)
         );
-        console.log(sortedData);
         setData(sortedData);
       })
       .catch((error) => {
