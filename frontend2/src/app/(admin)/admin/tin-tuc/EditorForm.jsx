@@ -41,19 +41,21 @@ const getData = async ({ id }) => {
   }
 };
 
-export default function EditorForm() {
+export default function EditorForm({ id }) {
   const [data, setData] = useState(defaultData);
 
-  const id = usePath();
-
   React.useEffect(() => {
-    if (id[id.length - 1] === "add") {
-      setData(defaultData);
-    } else {
-      getData({ id: id[id.length - 1] }).then((result) => {
-        setData(result);
-      });
-    }
+    // if (id[id.length - 1] === "add") {
+    //   setData(defaultData);
+    // } else {
+    //   getData({ id: id[id.length - 1] }).then((result) => {
+    //     setData(result);
+    //   });
+    // }
+
+    !id
+      ? setData(defaultData)
+      : getData({ id }).then((result) => setData(result));
   }, []);
 
   const handleChange = (field) => (value) => {
@@ -79,6 +81,7 @@ export default function EditorForm() {
             setData={setData}
             handleChange={handleChange}
             url={true}
+            id={id}
           />
 
           <FormSEO data={data} setData={setData} handleChange={handleChange} />

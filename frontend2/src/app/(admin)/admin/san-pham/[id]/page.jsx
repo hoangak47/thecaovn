@@ -72,6 +72,7 @@ export default function page({ params }) {
             setData={setData}
             handleChange={handleChange}
             short_description_input="textarea"
+            id={id}
           >
             <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg">
               <div className="px-5 py-3 border-b border-gray-300">
