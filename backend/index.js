@@ -24,6 +24,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://thecaovn.com",
   "https://thecaovn-liard.vercel.app",
+  "https://www.motelchauthanhtiengiang.cloud",
 ];
 
 app.use(
