@@ -31,7 +31,6 @@ export default function page({ params }) {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}danh-muc/${id}`)
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((error) => {

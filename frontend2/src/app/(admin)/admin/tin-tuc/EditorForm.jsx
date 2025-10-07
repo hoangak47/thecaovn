@@ -74,6 +74,7 @@ export default function EditorForm({ id }) {
             setData={setData}
             url={url_request}
             data={data}
+            id={id}
           />
 
           <RenderMainContentFields
@@ -95,6 +96,7 @@ export default function EditorForm({ id }) {
             setData={setData}
             url={url_request}
             data={data}
+            id={id}
           />
         </div>
       </div>

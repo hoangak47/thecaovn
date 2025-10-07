@@ -33,7 +33,6 @@ export default function HandleAction({
         alert("Cập nhật thành công!");
         if (goback) {
           if (redirectTo) {
-            console.log(redirectTo);
             router.push(`${redirectTo}`);
           } else {
             router.back();

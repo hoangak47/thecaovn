@@ -21,7 +21,6 @@ export default function RenderMainContentFields({
   const [editorReady, setEditorReady] = useState(false);
   useEffect(() => {
     setEditorReady(true);
-    console.log(id);
   }, []);
 
   return (

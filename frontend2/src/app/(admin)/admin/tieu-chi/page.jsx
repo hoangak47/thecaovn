@@ -96,7 +96,7 @@ export default function page() {
                   <a
                     aria-label={`Edit row ${index + 1}`}
                     className="hover:text-[#a31a20]"
-                    href={`/admin/slide/${item.id}`}
+                    href={`/admin/tieu-chi/${item.id}`}
                   >
                     <i className="fas fa-pen"></i>
                   </a>

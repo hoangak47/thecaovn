@@ -4,7 +4,6 @@ const { db, admin } = require("../config/firebase");
 
 router.post("/", async (req, res) => {
   const { id, password } = req.body;
-  console.log(id, password);
   if (!id || !password) {
     return res.status(400).send("Thiếu thông tin: id, password là bắt buộc");
   }
