@@ -27,7 +27,7 @@ export default function Doitac() {
 
   return (
     <section className="flex flex-col mt-20 xl:px-28 px-4">
-      <h1 className="md:block hidden">
+      <h1 className="block">
         <p className="text-2xl md:text-4xl font-medium mt-5 text-center m-5">
           Đối tác với{" "}
           <span className="text-[var(--color-primary)]">Thế Cao</span>
