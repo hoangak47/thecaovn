@@ -4,6 +4,12 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="iDjEWJDFYYFHqH_2jK-C0jw75XTDyn608-pPwgSjSBg"
+        />
+      </head>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -22,6 +28,11 @@ export default function RootLayout({ children }) {
           type="image/png"
           sizes="16x16"
           href="/favicon-16x16.png"
+        />
+
+        <meta
+          name="google-site-verification"
+          content="iDjEWJDFYYFHqH_2jK-C0jw75XTDyn608-pPwgSjSBg"
         />
       </Head>
       <body>{children}</body>
