@@ -1,7 +1,5 @@
 import Head from "next/head";
 import "./globals.css";
-import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({ children }) {
   return (
@@ -26,23 +24,7 @@ export default function RootLayout({ children }) {
           href="/favicon-16x16.png"
         />
       </Head>
-      <body>
-        <Analytics />
-        {/* Google Analytics Script */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-8Y9MX8FRB3"
-          strategy="afterInteractive" // Tải sau khi trang tương tác được
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-8Y9MX8FRB3');
-          `}
-        </Script>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
