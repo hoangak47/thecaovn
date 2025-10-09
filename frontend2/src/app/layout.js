@@ -25,27 +25,22 @@ export default function RootLayout({ children }) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-
-        <meta
-          name="google-site-verification"
-          content="iDjEWJDFYYFHqH_2jK-C0jw75XTDyn608-pPwgSjSBg"
-        />
       </Head>
-      {/* Google Analytics */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-8Y9MX8FRB3"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-8Y9MX8FRB3');
-        `}
-      </Script>
       <body>
         <Analytics />
+        {/* Google Analytics Script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-8Y9MX8FRB3"
+          strategy="afterInteractive" // Tải sau khi trang tương tác được
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8Y9MX8FRB3');
+          `}
+        </Script>
         {children}
       </body>
     </html>
