@@ -1,6 +1,7 @@
 import Head from "next/head";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({ children }) {
   return (
@@ -43,7 +44,10 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-8Y9MX8FRB3');
         `}
       </Script>
-      <body>{children}</body>
+      <body>
+        <Analytics />
+        {children}
+      </body>
     </html>
   );
 }
