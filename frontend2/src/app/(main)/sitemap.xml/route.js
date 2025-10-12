@@ -2,19 +2,16 @@ import axios from "axios";
 
 export async function GET() {
   const baseUrl = "https://thecaovn.com";
-  const baseNEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // Gọi API lấy danh sách bài viết
-  let posts = [];
+  let ids = [];
+  console.log(`${API_URL}/sitemap`);
   try {
-    const [danhMuc, tinTuc] = await Promise.all([
-      axios.get(`${baseNEXT_PUBLIC_API_URL}/danh-muc`),
-      axios.get(`${baseNEXT_PUBLIC_API_URL}/tin-tuc`),
-    ]);
-
-    posts = [...danhMuc.data, ...tinTuc.data];
+    const res = await axios.get(`${API_URL}sitemap`);
+    ids = res.data;
   } catch (error) {
-    posts = [];
+    ids = [];
   }
 
   const staticUrls = [
@@ -29,7 +26,7 @@ export async function GET() {
   ];
 
   // Tạo url động từ dữ liệu API
-  const dynamicUrls = posts.map((post) => `/${post.url}`);
+  const dynamicUrls = ids.map((id) => `/${id}`);
 
   const urls = staticUrls.concat(dynamicUrls);
 

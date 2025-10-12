@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const ref = db.collection("tin-tuc").orderBy("createdAt", "desc");
+    const ref = db.collection("tin-tuc").orderBy("updatedAt", "desc");
     const querySnapshot = await ref.get();
     const slides = [];
     querySnapshot.forEach((doc) => {
