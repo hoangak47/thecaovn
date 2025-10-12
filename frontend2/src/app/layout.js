@@ -1,5 +1,6 @@
 import Head from "next/head";
 import "./globals.css";
+import Script from "next/script";
 
 export default function RootLayout({ children }) {
   return (
@@ -10,6 +11,18 @@ export default function RootLayout({ children }) {
           content="iDjEWJDFYYFHqH_2jK-C0jw75XTDyn608-pPwgSjSBg"
         />
       </head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-PQBT888VR3"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-PQBT888VR3');
+        `}
+      </Script>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -28,11 +41,6 @@ export default function RootLayout({ children }) {
           type="image/png"
           sizes="16x16"
           href="/favicon-16x16.png"
-        />
-
-        <meta
-          name="google-site-verification"
-          content="iDjEWJDFYYFHqH_2jK-C0jw75XTDyn608-pPwgSjSBg"
         />
       </Head>
       <body>{children}</body>
